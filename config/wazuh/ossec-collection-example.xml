@@ -1,0 +1,16 @@
+<!--
+    Step 1 - Milestone A
+    Wazuh telemetry collection example
+-->
+
+<!-- Sysmon endpoint telemetry -->
+<localfile>
+    <location>Microsoft-Windows-Sysmon/Operational</location>
+    <log_format>eventchannel</log_format>
+</localfile>
+
+<!-- Suricata EVE JSON -->
+<localfile>
+    <location>C:\Program Files\Suricata\log\eve.json</location>
+    <log_format>json</log_format>
+</localfile>
