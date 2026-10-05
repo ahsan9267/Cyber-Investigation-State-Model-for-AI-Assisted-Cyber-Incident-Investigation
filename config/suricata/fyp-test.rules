@@ -1,0 +1,6 @@
+# FYP diagnostic integration rule
+#
+# Used to verify the Suricata -> EVE JSON -> Wazuh telemetry path.
+# Intended for controlled laboratory validation.
+
+alert icmp any any -> any any (msg:"FYP TEST - ICMP Echo Request"; itype:8; sid:1000001; rev:2;)
