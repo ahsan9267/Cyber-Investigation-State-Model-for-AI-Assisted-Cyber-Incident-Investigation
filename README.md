@@ -65,3 +65,35 @@ Wazuh Agent
    | TCP 1514
    v
 Wazuh Manager
+
+```
+
+## Technologies
+
+- Wazuh
+- Sysmon
+- Suricata
+- Npcap
+- Python
+- PostgreSQL
+- Neo4j
+- Streamlit
+- Local LLM inference
+
+## Development Approach
+
+Implementation is committed incrementally according to verified engineering milestones.
+
+The current repository snapshot represents the initial Step 1 telemetry foundation. Additional operational hardening, lifecycle management, and final validation will be added in a subsequent milestone.
+
+## Academic Project
+
+Final Year Project  
+BS Cyber Security  
+Faculty of Computing  
+Riphah International University
+
+## Project Status
+
+Under active development.
+
