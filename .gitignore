@@ -6,3 +6,32 @@ venv/
 .vscode/
 *.log
 ~$*
+
+
+# Python virtual environments
+.venv/
+
+# Security telemetry and packet captures
+*.pcap
+*.pcapng
+eve*.json
+alerts.json
+archives.json
+
+# Local databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Local datasets and generated data
+data/
+datasets/
+
+# Credentials and secrets
+*.key
+*.pem
+credentials*
+secrets*
+
+# Local machine-specific configuration
+config/local/
