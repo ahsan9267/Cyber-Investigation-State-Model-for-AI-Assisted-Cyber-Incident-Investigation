@@ -1,99 +1,57 @@
-# AI-Assisted Cyber Incident Investigation
+# SPINE
 
-Final Year Project - BS Cyber Security
+AI-assisted persistent cyber incident investigation - BS Cyber Security Final Year Project.
 
-This repository contains the implementation of an AI-assisted cyber incident investigation system designed for Security Operations Center (SOC) environments.
+SPINE is being developed to retain investigation context across related alerts
+and telemetry. This repository release publishes the Step 1 telemetry foundation.
+Later ingestion, association and manager work already exists in the development
+lab and will be published separately. Local LLM reasoning is planned work.
 
-The project focuses on maintaining persistent investigation context across related security alerts and telemetry rather than treating each alert as an isolated event.
+## Architecture and proposal
 
-## Project Architecture
+- [Architecture diagram](docs/architecture/detailed-architecture.png)
+- [Project proposal](docs/proposal/FYP_Final_Proposal.pdf)
 
-The system is being implemented incrementally through multiple development stages:
+The wider design connects telemetry, normalization, alert-to-case association,
+investigation management, evidence analysis and analyst validation. Those
+planned components should not be inferred from the contents of this release.
 
-1. Security Telemetry and Alerts
-2. Ingestion and Normalization
-3. Alert-to-Case Association
-4. Investigation State Management
-5. Evidence Acquisition
-6. Evidence Analysis and AI Assistance
-7. Investigation Output and Analyst Validation
+## Published status
 
-## Current Development Status
+Milestone A and the final capture/log configuration are published. The maintenance and final-verification commit follows as the second half of this release.
 
-### Step 1 - Security Telemetry and Alerts
+- [Milestone A](docs/step-01-telemetry/milestone-a.md)
+- [Final telemetry configuration](docs/step-01-telemetry/configuration.md)
+- [Log lifecycle and retention boundaries](docs/step-01-telemetry/log-lifecycle.md)
 
-**Milestone A: Telemetry Foundation**
+Step 1 uses a Wazuh 4.14.5 manager and Windows agent, Sysmon 15.21, Suricata
+8.0.7 and Npcap. The agent forwards Sysmon event-channel records and security
+EVE JSON. The diagnostic signature is SID 1000001, revision 2, for ICMP Echo
+Requests. It verifies integration and is not a production detection ruleset.
 
-Current implementation includes:
+## Configuration examples
 
-- Wazuh Windows agent integration
-- Sysmon endpoint telemetry collection
-- Suricata IDS deployment on Windows
-- Npcap packet capture
-- Wi-Fi network monitoring
-- VirtualBox Host-Only laboratory monitoring
-- Structured Suricata EVE JSON generation
-- Suricata-to-Wazuh event forwarding
-- Controlled diagnostic Suricata detection rule
-- End-to-end telemetry pipeline validation
+- `config/wazuh/ossec-collection-example.xml` contains collection blocks to merge into an existing agent configuration
+- `config/suricata/suricata-step1.example.yaml` is the complete lab configuration with two placeholder capture-device GUIDs
+- `config/suricata/fyp-test.rules` contains the diagnostic rule
+- `config/suricata/fyp-local.rules` reserves a file for future local signatures
 
-### Current Telemetry Flow
+Replace the example GUIDs and adapt networks/paths before using the YAML on a
+different host. Security EVE rotates daily; sensor statistics use a separate
+local health stream. Retention limits file age, not total disk consumption.
 
-```text
-Sysmon
-   |
-   | Windows Event Channel
-   v
-Wazuh Agent
-   |
-   | TCP 1514
-   v
-Wazuh Manager
+## Current development-laptop mode
 
+The original Step 1 baseline used automatic service startup. The development
+laptop moved to on-demand operation on 20 October 2026. Its current Suricata
+and Wazuh-agent startup mode is Manual; use its installed `Start-FYP.cmd` and
+`Stop-FYP.cmd` controls for test sessions. Sysmon retains its Windows setup.
+The controller belongs to the later runtime publication and is not bundled here.
 
-Npcap
-   |
-   v
-Suricata
-   |
-   v
-EVE JSON
-   |
-   v
-Wazuh Agent
-   |
-   | TCP 1514
-   v
-Wazuh Manager
+Historical configuration and tests retain their dates. See the Step 1
+documents for the original acceptance evidence and later inspection scope.
 
-```
+## Academic project
 
-## Technologies
-
-- Wazuh
-- Sysmon
-- Suricata
-- Npcap
-- Python
-- PostgreSQL
-- Neo4j
-- Streamlit
-- Local LLM inference
-
-## Development Approach
-
-Implementation is committed incrementally according to verified engineering milestones.
-
-The current repository snapshot represents the initial Step 1 telemetry foundation. Additional operational hardening, lifecycle management, and final validation will be added in a subsequent milestone.
-
-## Academic Project
-
-Final Year Project  
-BS Cyber Security  
-Faculty of Computing  
-Riphah International University
-
-## Project Status
-
-Under active development.
-
+Muhammad Ahsan Qureshi and Mubbashir Ahmed, supervised by Syed Yawar Abbas.
+BS Cyber Security, Faculty of Computing, Riphah International University.
