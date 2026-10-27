@@ -18,11 +18,14 @@ planned components should not be inferred from the contents of this release.
 
 ## Published status
 
-Milestone A and the final capture/log configuration are published. The maintenance and final-verification commit follows as the second half of this release.
+Milestones A and B are published. Step 1 is complete within the documented laboratory scope.
 
 - [Milestone A](docs/step-01-telemetry/milestone-a.md)
 - [Final telemetry configuration](docs/step-01-telemetry/configuration.md)
 - [Log lifecycle and retention boundaries](docs/step-01-telemetry/log-lifecycle.md)
+- [Milestone B](docs/step-01-telemetry/milestone-b.md)
+- [Operations and service lifecycle](docs/step-01-telemetry/operations.md)
+- [Dated verification record](docs/step-01-telemetry/validation.md)
 
 Step 1 uses a Wazuh 4.14.5 manager and Windows agent, Sysmon 15.21, Suricata
 8.0.7 and Npcap. The agent forwards Sysmon event-channel records and security
@@ -39,6 +42,8 @@ Requests. It verifies integration and is not a production detection ruleset.
 Replace the example GUIDs and adapt networks/paths before using the YAML on a
 different host. Security EVE rotates daily; sensor statistics use a separate
 local health stream. Retention limits file age, not total disk consumption.
+The installed retention script and task example are under `scripts/windows/` and `config/windows/`.
+Review the operations runbook before using them on another machine.
 
 ## Current development-laptop mode
 
