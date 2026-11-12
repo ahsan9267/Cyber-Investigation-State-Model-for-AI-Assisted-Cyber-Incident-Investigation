@@ -35,3 +35,16 @@ secrets*
 
 # Local machine-specific configuration
 config/local/
+
+# Step 2 local environments, credentials and generated verification output
+venv-*/
+.venv-*/
+.pytest_cache/
+.coverage
+htmlcov/
+*.pyo
+*.dump
+*.backup
+.pgpass
+pgpass.conf
+/results/
