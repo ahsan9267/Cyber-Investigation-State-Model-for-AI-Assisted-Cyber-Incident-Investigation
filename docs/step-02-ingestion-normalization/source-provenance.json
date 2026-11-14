@@ -1,0 +1,506 @@
+{
+  "source": "accepted_step2_snapshot_2026-11-12",
+  "runtime_source_modified": false,
+  "github_inspected": false,
+  "source_files": [
+    {
+      "path": "src/spine/__init__.py",
+      "sha256": "47c8b8fd3a9cdec5a35020c60f1ff80ca6d0ef82e714581386afcae44b6d8ea8",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "src/spine/authentication.py",
+      "sha256": "a6b8b8025854e805ccdce3ef752b67583f8e3843bfca20ce7277bcc0ecbeeb47",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "src/spine/batch.py",
+      "sha256": "59643e898528652eb51da35da2f9b260134fb064a08204d22deedb01156af23c",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "src/spine/dns.py",
+      "sha256": "dcd09ddc768e06bfc7f986600310a099ad007a24affd9cb4a122269a1ec04107",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "src/spine/entities.py",
+      "sha256": "8e54291bb40f5fbd70d33ad781d9db4d7a035227249ccc59e6b024460be25a7b",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "src/spine/envelope.py",
+      "sha256": "7d9ce059e690ccb8e4d06d6fc7b24d1ae1f1daa47a347acb0def4e357fd4dff3",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "src/spine/eve.py",
+      "sha256": "272b7d7cdc3a77f959c5642988099dea02f98fd7fe77613161dcae493fcb2080",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "src/spine/identity.py",
+      "sha256": "53668fac2b9aa295d49db6113e99f7432f985df4b30851f7320312bce1d114b1",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "src/spine/ingestion_accounting.py",
+      "sha256": "b88cb881f84d771919159c5b0211b020119ebe7c00090d716f82b0b53fcb4c21",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "src/spine/mitre.py",
+      "sha256": "34a75d1e23f37e6b5a13ce06876eb63e06b44253cd03a33cd78c5ed34d811d88",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "src/spine/pipeline.py",
+      "sha256": "7464f9d36a8ab5c6cac79efdd6b5de189d0dd7dc266530a4c5a77520c50eb555",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "src/spine/preview.py",
+      "sha256": "ab7e0cf69547cf58d034eaa6aedbf8393e998f9c7304cc42b0d72fb12c0bd543",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "src/spine/priority.py",
+      "sha256": "74fe6f40e2c3dbea997fce0cc5fe87be48addc89e58db2582ed1bf9d3078779e",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "src/spine/service.py",
+      "sha256": "3bf06a4d216b44ce84bebe8cdc61eafa2e0c20de37e578c3eda757d2a9414843",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "src/spine/suricata.py",
+      "sha256": "84b0f57df2307a72030cf5033749781cf7015a73dd8bf53904cb26169a34fd40",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "src/spine/syscheck.py",
+      "sha256": "74496d1f8bb729072d99a8b66414ab9ba2088f853ef8cc0e6e3d1941fec1234e",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "src/spine/sysmon_xml.py",
+      "sha256": "4603deca1f5f016ef34699d19cfbad3c8bc005c404f48e7d80683ca9c8bc3cc5",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "src/spine/timestamps.py",
+      "sha256": "ed7964889c3f496c2ce4ed024f5a84e189e78311fb083864627b866a29996c11",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "src/spine/user_identity.py",
+      "sha256": "d44c8f2d68610aad2613fee792e0207968e3f0aef9080faac1c93f9f4c272817",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "src/spine/wazuh.py",
+      "sha256": "b64a9de010615a6fee0092ecafccd23f44e5ceba738e6c63a507a2d59fe60f9c",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "src/spine/windows.py",
+      "sha256": "31313a2c2c8bae73cfa00dc03a91ef4086c3363227ea864e96bd83958ddd8ae2",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "src/spine/database.py",
+      "sha256": "9ee10182876f4f00d8e436ede32be29bd73e9a445cd13f93d9ad17f43b092219",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "src/spine/eve_retention_status.py",
+      "sha256": "2569f27310477bce149dc8b0c3799b49640e8244c77b97852b2d4d4170b2097e",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "src/spine/file_recovery.py",
+      "sha256": "01a7f61806efba749b80b5e8f07efaeb2c0279b7056d6a315c204112f7fe4ab3",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "src/spine/live_eve.py",
+      "sha256": "f628546eb8df30aa6d93554a8086da2af1a1a6c3da55550a270840b33477426e",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "src/spine/live_lines.py",
+      "sha256": "ae8efa995b11513a11f612a07723f8c15c7dd550299cf7d41dc34991aa88f385",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "src/spine/live_sysmon.py",
+      "sha256": "9fa84d0b6c0d2c49d1f9901da8f19dc784afc90031cf709f422d63b4e64dfba8",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "src/spine/live_wazuh.py",
+      "sha256": "3a22f489b92c0f1f0d4d787f431e38c55b395078b346bfe09f96bdf8e5e959d6",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "src/spine/remote_wazuh.py",
+      "sha256": "e4dc8709c6351f77a9867822406ec462fce1676487e0fdc4a1efbac0d6a45c1a",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "src/spine/snapshot.py",
+      "sha256": "5f84e48b4470010ce962e146cbefb506e4086cc4c20ee50efb407ba77d1c488e",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "src/spine/storage.py",
+      "sha256": "261a7aaf6807eae9cb5e481d47bfac16b8dc090b9bacf13c3aaacfdd8c74e65c",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "src/spine/sysmon_errors.py",
+      "sha256": "324631fe4ea0b41fbd30de6615bc0389195d3f1b3c9b04691d33ae2f8893866b",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "src/spine/sysmon_recovery.py",
+      "sha256": "a2f974c53615a313dca5a151872956632278f2b9ae5a4831d3c70d196cd1d611",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "src/spine/sysmon_transport.py",
+      "sha256": "d057ea6e5e83640b4e324833cd524d51a7c6879cd0ebe19e64303d1e49519639",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "src/spine/wazuh_handoff.py",
+      "sha256": "266dd7d4fc4cb4f195295320b7d8bcb7bfa694a212475e7e1cf5541a3204c18c",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "src/spine/wazuh_recovery.py",
+      "sha256": "1c9528ff26dfde59355b8a3c4610f9615dfa9288a11c60b875fffbb2b22bb7a0",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "tests/test_authentication.py",
+      "sha256": "5b6538b04219ff7ef016d1fc3af0d536436f23e8228731734cab26ef6588617a",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "tests/test_batch.py",
+      "sha256": "c25ae6f35f019270e76482e57bf56a8ed1e7f69551a3d7e547318fc465a66977",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "tests/test_dns.py",
+      "sha256": "c0e362d366ba7e53414b0002ce307d8ac9d366f842a5e0d2424b67679fb67718",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "tests/test_entities.py",
+      "sha256": "c2c0762e4cbce6f137a8482be2db6ba726fdf2227ede206dfacfda1070d9ba85",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "tests/test_envelope.py",
+      "sha256": "3504db856307cd98efab3b4d31954f3ab8fa3c090fe74f8a29ac91888f442972",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "tests/test_eve.py",
+      "sha256": "0ce189f8636a20dc4f77821e3ab74fa593fcf7f0a6ce59ad52d0948ae90dac14",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "tests/test_identity.py",
+      "sha256": "4d6a07587505ebc0296a261921773f6160fd8d9721a4bf7b79f523541dfabe82",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "tests/test_live_lines.py",
+      "sha256": "881b3bbe3d1cae32c89557671d56ffa16fe158cdcd8f53f0398e9ef2812a24f9",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "tests/test_mitre.py",
+      "sha256": "616b00b1e8ef5f83ff1ce7cf967c660a034206997d6c754fa086ea94b61c066e",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "tests/test_priority.py",
+      "sha256": "ee2c19aaccbc456b1436c6cf124e016f452d27d9b4fc8a9a874766bea0bbb347",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "tests/test_service.py",
+      "sha256": "b1f7813f7b23bc5c8dde9d737dc92b3db20d77238ea2d20f4bb549caef4c6a91",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "tests/test_step2_normalization.py",
+      "sha256": "8dfdb5d01abe287e6f7d44bc9653834131c9b0cb58c314509c94e48d7bb8b7aa",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "tests/test_suricata.py",
+      "sha256": "55dd2f8964eb569f114c0c63d6625408e31020df25a7445680daca2017a0d64a",
+      "source": "accepted_step2_snapshot",
+      "unchanged": false,
+      "original_sha256": "7f6f5ca3376cdac6ab7085ab334a9b11589002d25e1c3775c14aacf1ecc4c3c7",
+      "change": "Relocate the synthetic fixture to tests/fixtures and label the test synthetic. Assertions unchanged."
+    },
+    {
+      "path": "tests/test_syscheck.py",
+      "sha256": "814d2043c213a8b0730cba8e0b210a33d55177a6f697218be83075ab2865a90d",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "tests/test_sysmon_xml.py",
+      "sha256": "1c6f7b53cd17386662a6f42fd34f2510f321aedd75503a3ec395e41c58a46a73",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "tests/test_timestamps.py",
+      "sha256": "6099b20969d3723635d171bc0dd5f7619d902b179017f0974e7ce0f7cc93eb84",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "tests/test_user_identity.py",
+      "sha256": "9baaf61d322a2b9bf36094ddb06616b700c7ec49dcabe21060661650093a23b2",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "tests/test_wazuh.py",
+      "sha256": "c3ad7eda7e3eff1db7c9c6ed8c64a78ca3ca543a2e8fe0c7c9c95fcf4c132a0e",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "tests/test_wazuh_maintenance.py",
+      "sha256": "bd474a937b39376727b26c7cdf01241fc9350d06d3c6ec728281c3477b41a559",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "tests/test_wazuh_rotation.py",
+      "sha256": "4880ea9774baf5b46099597bc38ecf12da687469dfe182a8a84489537977c466",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "tests/test_windows.py",
+      "sha256": "0a4a2008f338168311e50ed19e04eb87897d57506b2f5da4117ee2ad59cf837c",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "tools/build_wazuh_exporter.py",
+      "sha256": "dc8d69d5e6e09440d46dfca0cd4b68069fd7f46700a017bc0cae32d213c7e5aa",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "tools/check_file_recovery.py",
+      "sha256": "bb114fbc533b98953143df0037c5fd91e62c041d03d4a3aca9dd27e0a96bceee",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "tools/check_live_eve.py",
+      "sha256": "a2e6f63fe55f1f1dfbd28a25537d6a54315fe0592a707b2722137e660e222e87",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "tools/check_live_rotation.py",
+      "sha256": "4880aeb672fc6bc70c09423e5438e86d67d136c5311b8e3411ba46f848bc5b23",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "tools/check_live_sysmon.py",
+      "sha256": "94890cb6b916b4a795247f2ec995c15f4ed5198ec6710a09327d1dac714db14f",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "tools/check_live_wazuh.py",
+      "sha256": "5637927f775c4ec2054dd92a3f221377c1ae0afd92968980ac15123c4560951a",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "tools/check_snapshot_recovery.py",
+      "sha256": "60bf9932a534d58c4dc76cd1bb795bde70eb5dc4390f89ca62a68c1a4befe730",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "tools/check_sysmon_recovery.py",
+      "sha256": "2ee213f4a139eb4971c498635da014e797cbfd719e82e9f87079bde8136d76e7",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "tools/check_wazuh_maintenance.py",
+      "sha256": "f8df8002d8bfbbf40161269467cdf84049bef853153812932413624a45f36f6c",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "tools/fetch_wazuh_archive.py",
+      "sha256": "8696d6be0fb3edad55ba10379904963e6b39801e061b0c4022ea277d0947287a",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "tools/ingest_eve_once.py",
+      "sha256": "b39c1558c9850c003fa28df1e82df05c0a846dcf9b591d02cb2adb09090ccab2",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "tools/inspect_wazuh_maintenance.py",
+      "sha256": "9085154a9f5c4cf63f8fcbfaa6a50ee9a9888ca690d76e63de207a8c918a7ba3",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "tools/poll_wazuh.py",
+      "sha256": "62a564744b09a6c0c5708970b59e1db1ef7b5fc044d2757ef2ef9f57be4eee26",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "tools/recover_wazuh_checkpoint.py",
+      "sha256": "e3a2865bd06561af29b7cf5d1a57a3dcb17ad5ffa260d3a53dbd686e7dab8c59",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "tools/run_collectors.py",
+      "sha256": "8c611ac2642b9e77eecb8438f9e658566c6641326795d949a94cb757e050a6fc",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "tools/start_collectors.py",
+      "sha256": "99ab176f73c1446fd726269b94871d04daf11836cd79b648b33f9bd125c45130",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "tools/sysmon_reader.ps1",
+      "sha256": "e2af194130af060134a769b83163765e1e26922f18254cfd7b2e27b2c72e8178",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "tools/sysmon_bookmarks.ps1",
+      "sha256": "2c857e3fd3c65a60a682c411b816ae9c57a25f8775b477a9f0919b5012bbc5b2",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "sql/001_ingestion_records.sql",
+      "sha256": "5ddd54102df24eb67eeea3a8369d48034bf2b01c9e726edf24ac0831cfa405d1",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "sql/002_snapshot_checkpoints.sql",
+      "sha256": "710bd9e4de9959c57d399cba15d70897ff7abf8e09e9c50803a5261db8290b9e",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "sql/003_live_files.sql",
+      "sha256": "5289ad3ee4f12982c951f543fddb9707553ee104aa71eba6784a3ccac821035e",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "sql/004_preserve_json_escapes.sql",
+      "sha256": "e45f785442e2393a3eba9dc8c4ee905c55184e5ff8a2771cdbb508120c6afed4",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "sql/005_file_generation_events.sql",
+      "sha256": "00baa04f901513b4fc93cf8d54ba73ec57ca0b34c4044c5d51f529332c88bc62",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "sql/006_wazuh_archive_path.sql",
+      "sha256": "5d4a0a6260299ab72f131ecd11cc6f67cfe6a69ca4aa1505cf3107aa5bded761",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    },
+    {
+      "path": "sql/007_sysmon_checkpoints.sql",
+      "sha256": "ae1800381539eaed6cca092f077c1fbcac0f7c53016d201712c1831096986437",
+      "source": "accepted_step2_snapshot",
+      "unchanged": true
+    }
+  ],
+  "repository_base_commit": "ffc15943e4a3a472610f9e6fee063c427823ce90",
+  "github_live_verified": false,
+  "layout": "repository_root",
+  "original_repository_base_commit": "c88da5cc164612045d33a450a1b037ddcdca4a2a",
+  "confirmed_part1_commit": "ffc15943e4a3a472610f9e6fee063c427823ce90"
+}

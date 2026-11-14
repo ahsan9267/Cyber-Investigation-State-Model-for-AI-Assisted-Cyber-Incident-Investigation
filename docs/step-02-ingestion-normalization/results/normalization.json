@@ -1,0 +1,128 @@
+{
+  "status": "PASS",
+  "synthetic": true,
+  "live_sensors_executed": false,
+  "database_accessed": false,
+  "association_evaluated": false,
+  "records": 41,
+  "raw_and_replay_checks_passed": 41,
+  "field_checks": 23,
+  "scenarios": [
+    {
+      "scenario": "01_powershell",
+      "pass": true,
+      "checks": [
+        {
+          "name": "PowerShell image",
+          "pass": true
+        },
+        {
+          "name": "Parent context",
+          "pass": true
+        },
+        {
+          "name": "Child parent GUID",
+          "pass": true
+        },
+        {
+          "name": "Source time kept separate",
+          "pass": true
+        },
+        {
+          "name": "Direct process XML mapped",
+          "pass": true
+        },
+        {
+          "name": "Direct network XML raw fields retained",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "scenario": "02_login_sequence",
+      "pass": true,
+      "checks": [
+        {
+          "name": "Failure outcome",
+          "pass": true
+        },
+        {
+          "name": "Success outcome",
+          "pass": true
+        },
+        {
+          "name": "Remote logon type",
+          "pass": true
+        },
+        {
+          "name": "Source IP",
+          "pass": true
+        },
+        {
+          "name": "Missing source stays unknown",
+          "pass": true
+        },
+        {
+          "name": "Local control stays local",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "scenario": "03_service",
+      "pass": true,
+      "checks": [
+        {
+          "name": "Service name",
+          "pass": true
+        },
+        {
+          "name": "Exact configured path",
+          "pass": true
+        },
+        {
+          "name": "Service account",
+          "pass": true
+        },
+        {
+          "name": "Missing path stays unknown",
+          "pass": true
+        },
+        {
+          "name": "Execution image",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "scenario": "04_dns",
+      "pass": true,
+      "checks": [
+        {
+          "name": "Flow identity",
+          "pass": true
+        },
+        {
+          "name": "Resolver",
+          "pass": true
+        },
+        {
+          "name": "Independent sensor identity",
+          "pass": true
+        },
+        {
+          "name": "Suricata 8 request format without warnings",
+          "pass": true
+        },
+        {
+          "name": "Request type retained",
+          "pass": true
+        },
+        {
+          "name": "Empty response answers retained",
+          "pass": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,768 @@
+{
+  "schema_version": "spine_synthetic_scenarios/1",
+  "synthetic": true,
+  "source_scope": "synthetic/spine/prelive/v1",
+  "observed_time": "2026-01-15T15:00:00Z",
+  "review_status": "DRAFT: independent Ahsan/Mubashir review pending",
+  "ground_truth_basis": "Declared generated episodes; not inferred from current algorithm output.",
+  "coverage_status": "No native capture-window coverage is established by generated files.",
+  "scenarios": [
+    {
+      "name": "01_powershell",
+      "title": "Suspicious PowerShell with process context",
+      "alert_ids": [
+        "ps-main",
+        "ps-child",
+        "ps-control",
+        "ps-other-host"
+      ],
+      "expected_groups": [
+        "ps-episode",
+        "ps-episode",
+        "ps-independent",
+        "ps-other-host"
+      ],
+      "field_checks": [
+        {
+          "name": "PowerShell image",
+          "fixture_id": "ps-main",
+          "path": [
+            "attributes",
+            "process",
+            "image"
+          ],
+          "expected": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
+        },
+        {
+          "name": "Parent context",
+          "fixture_id": "ps-main",
+          "path": [
+            "attributes",
+            "process",
+            "parent",
+            "image"
+          ],
+          "expected": "C:\\Windows\\System32\\cmd.exe"
+        },
+        {
+          "name": "Child parent GUID",
+          "fixture_id": "ps-child",
+          "path": [
+            "attributes",
+            "process",
+            "parent",
+            "guid"
+          ],
+          "expected": "{5469b3cc-03c4-587c-8ecc-c97d556957b8}"
+        },
+        {
+          "name": "Source time kept separate",
+          "fixture_id": "ps-main",
+          "path": [
+            "event_time",
+            "utc"
+          ],
+          "expected": "2026-01-15T10:00:00Z"
+        },
+        {
+          "name": "Direct process XML mapped",
+          "fixture_id": "ps-source-xml",
+          "path": [
+            "attributes",
+            "process",
+            "guid"
+          ],
+          "expected": "{5469b3cc-03c4-587c-8ecc-c97d556957b8}"
+        },
+        {
+          "name": "Direct network XML raw fields retained",
+          "fixture_id": "ps-network-xml",
+          "path": [
+            "attributes",
+            "source_payload",
+            "eventdata_original",
+            "ProcessGuid"
+          ],
+          "expected": "{5469b3cc-03c4-587c-8ecc-c97d556957b8}"
+        }
+      ],
+      "required_questions": [
+        "What executable, command line, parent and process instance were reported?",
+        "Which connection belongs to that process, and is its capture window verified?"
+      ],
+      "expected_supported_observations": [
+        "The generated command decodes to harmless Write-Output; it was never executed.",
+        "A parent/child process relationship is explicit; host B is independent.",
+        "A network event is supplied as telemetry, not proof of malicious intent."
+      ],
+      "sufficient_if": [
+        "Retained process, parent and network evidence is source-bound; findings cite it.",
+        "Absence is used only with a separately verified coverage window."
+      ],
+      "insufficient_if": [
+        "No network capture, missing identity, ambiguous parentage or unsupported factual claims."
+      ]
+    },
+    {
+      "name": "02_login_sequence",
+      "title": "Three remote failures followed by success",
+      "alert_ids": [
+        "auth-fail-0",
+        "auth-fail-1",
+        "auth-fail-2",
+        "auth-success",
+        "auth-other-user",
+        "auth-other-source",
+        "auth-other-host",
+        "auth-missing-source",
+        "auth-local-control"
+      ],
+      "expected_groups": [
+        "login-episode",
+        "login-episode",
+        "login-episode",
+        "login-episode",
+        "other-user",
+        "other-source",
+        "other-host",
+        "missing-source",
+        "local-only"
+      ],
+      "field_checks": [
+        {
+          "name": "Failure outcome",
+          "fixture_id": "auth-fail-0",
+          "path": [
+            "attributes",
+            "authentication",
+            "outcome"
+          ],
+          "expected": "failure"
+        },
+        {
+          "name": "Success outcome",
+          "fixture_id": "auth-success",
+          "path": [
+            "attributes",
+            "authentication",
+            "outcome"
+          ],
+          "expected": "success"
+        },
+        {
+          "name": "Remote logon type",
+          "fixture_id": "auth-success",
+          "path": [
+            "attributes",
+            "authentication",
+            "logon_type"
+          ],
+          "expected": 3
+        },
+        {
+          "name": "Source IP",
+          "fixture_id": "auth-success",
+          "path": [
+            "attributes",
+            "authentication",
+            "source_ip"
+          ],
+          "expected": "192.0.2.20"
+        },
+        {
+          "name": "Missing source stays unknown",
+          "fixture_id": "auth-missing-source",
+          "path": [
+            "attributes",
+            "authentication",
+            "source_ip"
+          ],
+          "expected": null
+        },
+        {
+          "name": "Local control stays local",
+          "fixture_id": "auth-local-control",
+          "path": [
+            "attributes",
+            "authentication",
+            "logon_type"
+          ],
+          "expected": 2
+        }
+      ],
+      "required_questions": [
+        "Are there three distinct failures before success in ten minutes?",
+        "Do host, account, domain, source IP and remote logon type agree?",
+        "Are independent users, sources, hosts and local logons kept separate?"
+      ],
+      "expected_supported_observations": [
+        "Three distinct native 4625 records precede a 4624 with matching type-3 context.",
+        "This is a generated sequence; it establishes neither a live remote login nor compromise."
+      ],
+      "sufficient_if": [
+        "The bounded sequence is retained with unique event identities and supporting source fields.",
+        "The case state answers the sequence questions without joining controls."
+      ],
+      "insufficient_if": [
+        "Repeated ingestion is counted as extra attempts, context is absent, or independent controls merge."
+      ]
+    },
+    {
+      "name": "03_service",
+      "title": "Service installation and execution from a user-profile path",
+      "alert_ids": [
+        "svc-install",
+        "svc-execution",
+        "svc-legitimate-control",
+        "svc-missing-path"
+      ],
+      "expected_groups": [
+        "service-episode",
+        "service-episode",
+        "vendor-control",
+        "unknown-path"
+      ],
+      "field_checks": [
+        {
+          "name": "Service name",
+          "fixture_id": "svc-install",
+          "path": [
+            "attributes",
+            "service",
+            "name"
+          ],
+          "expected": "SpineSyntheticService"
+        },
+        {
+          "name": "Exact configured path",
+          "fixture_id": "svc-install",
+          "path": [
+            "attributes",
+            "service",
+            "image_path_original"
+          ],
+          "expected": "\"C:\\Users\\SyntheticOnly\\AppData\\Local\\SPINE\\fixture-service.exe\" --synthetic-only"
+        },
+        {
+          "name": "Service account",
+          "fixture_id": "svc-install",
+          "path": [
+            "attributes",
+            "service",
+            "account"
+          ],
+          "expected": "LocalSystem"
+        },
+        {
+          "name": "Missing path stays unknown",
+          "fixture_id": "svc-missing-path",
+          "path": [
+            "attributes",
+            "service",
+            "image_path_original"
+          ],
+          "expected": null
+        },
+        {
+          "name": "Execution image",
+          "fixture_id": "svc-execution",
+          "path": [
+            "attributes",
+            "process",
+            "image"
+          ],
+          "expected": "C:\\Users\\SyntheticOnly\\AppData\\Local\\SPINE\\fixture-service.exe"
+        }
+      ],
+      "required_questions": [
+        "What service, configured executable, account and start type are reported?",
+        "Does the evidence support linking the reported installation and later execution?",
+        "Are actual path permissions or installer identity known?"
+      ],
+      "expected_supported_observations": [
+        "A 7045 reports a user-profile path and LocalSystem; a later process reports that executable.",
+        "The fixture labels that controlled episode; the observed fields alone may be insufficient for automatic association.",
+        "7045 alone does not identify the installer or prove permissions, persistence success or maliciousness."
+      ],
+      "sufficient_if": [
+        "Installation and execution are evidenced and a supported relationship and limitations are retained.",
+        "A malicious or user-writable verdict requires separate evidence rather than path text alone."
+      ],
+      "insufficient_if": [
+        "Image path is missing, installer is guessed, or path/temporal similarity is treated as proof."
+      ]
+    },
+    {
+      "name": "04_dns",
+      "title": "Generated DNS burst spanning two sensor flows",
+      "alert_ids": [
+        "dns-marker",
+        "dns-burst",
+        "dns-next-flow",
+        "dns-other-sensor",
+        "dns-other-client"
+      ],
+      "expected_groups": [
+        "dns-episode",
+        "dns-episode",
+        "dns-episode",
+        "other-sensor",
+        "other-client"
+      ],
+      "field_checks": [
+        {
+          "name": "Flow identity",
+          "fixture_id": "dns-marker",
+          "path": [
+            "attributes",
+            "network",
+            "flow_id"
+          ],
+          "expected": "8001"
+        },
+        {
+          "name": "Resolver",
+          "fixture_id": "dns-marker",
+          "path": [
+            "attributes",
+            "network",
+            "destination_ip"
+          ],
+          "expected": "192.0.2.53"
+        },
+        {
+          "name": "Independent sensor identity",
+          "fixture_id": "dns-other-sensor",
+          "path": [
+            "agent",
+            "id"
+          ],
+          "expected": "992"
+        },
+        {
+          "name": "Suricata 8 request format without warnings",
+          "fixture_id": "dns-request-0",
+          "path": [
+            "normalization",
+            "warnings"
+          ],
+          "expected": []
+        },
+        {
+          "name": "Request type retained",
+          "fixture_id": "dns-request-0",
+          "path": [
+            "attributes",
+            "dns",
+            "message_type"
+          ],
+          "expected": "request"
+        },
+        {
+          "name": "Empty response answers retained",
+          "fixture_id": "dns-response-0",
+          "path": [
+            "attributes",
+            "dns",
+            "answers"
+          ],
+          "expected": []
+        }
+      ],
+      "required_questions": [
+        "What queries, client, resolver, times, response codes and sensor identities are reported?",
+        "Is the burst above the chosen test baseline and are relevant flows related?",
+        "Do the records support only an anomaly or also any claimed exfiltration?"
+      ],
+      "expected_supported_observations": [
+        "Eight generated request/response pairs form a small declared burst on reserved .invalid names.",
+        "Two synthetic alert records share a flow; a third belongs to the declared burst on another flow.",
+        "This demonstrates test inputs, not real DNS transmission, detection accuracy or exfiltration."
+      ],
+      "sufficient_if": [
+        "Scoped requests, responses, declared baseline and justified case relationships are retained.",
+        "Interpretation cites those records and does not claim exfiltration from query names alone."
+      ],
+      "insufficient_if": [
+        "Request format is unsupported, baselines or responses are absent, or sensor/flow scope is ignored."
+      ]
+    }
+  ],
+  "inputs": [
+    {
+      "fixture_id": "ps-main",
+      "scenario": "01_powershell",
+      "input_format": "wazuh",
+      "file": "fixtures/01_powershell.wazuh-alerts.jsonl",
+      "line": 1,
+      "source_scope": "synthetic/spine/prelive/v1",
+      "source_record_id": "SPINE-SYNTHETIC-v1-ps-main"
+    },
+    {
+      "fixture_id": "ps-child",
+      "scenario": "01_powershell",
+      "input_format": "wazuh",
+      "file": "fixtures/01_powershell.wazuh-alerts.jsonl",
+      "line": 2,
+      "source_scope": "synthetic/spine/prelive/v1",
+      "source_record_id": "SPINE-SYNTHETIC-v1-ps-child"
+    },
+    {
+      "fixture_id": "ps-control",
+      "scenario": "01_powershell",
+      "input_format": "wazuh",
+      "file": "fixtures/01_powershell.wazuh-alerts.jsonl",
+      "line": 3,
+      "source_scope": "synthetic/spine/prelive/v1",
+      "source_record_id": "SPINE-SYNTHETIC-v1-ps-control"
+    },
+    {
+      "fixture_id": "ps-other-host",
+      "scenario": "01_powershell",
+      "input_format": "wazuh",
+      "file": "fixtures/01_powershell.wazuh-alerts.jsonl",
+      "line": 4,
+      "source_scope": "synthetic/spine/prelive/v1",
+      "source_record_id": "SPINE-SYNTHETIC-v1-ps-other-host"
+    },
+    {
+      "fixture_id": "auth-fail-0",
+      "scenario": "02_login_sequence",
+      "input_format": "wazuh",
+      "file": "fixtures/02_login_sequence.wazuh-alerts.jsonl",
+      "line": 1,
+      "source_scope": "synthetic/spine/prelive/v1",
+      "source_record_id": "SPINE-SYNTHETIC-v1-auth-fail-0"
+    },
+    {
+      "fixture_id": "auth-fail-1",
+      "scenario": "02_login_sequence",
+      "input_format": "wazuh",
+      "file": "fixtures/02_login_sequence.wazuh-alerts.jsonl",
+      "line": 2,
+      "source_scope": "synthetic/spine/prelive/v1",
+      "source_record_id": "SPINE-SYNTHETIC-v1-auth-fail-1"
+    },
+    {
+      "fixture_id": "auth-fail-2",
+      "scenario": "02_login_sequence",
+      "input_format": "wazuh",
+      "file": "fixtures/02_login_sequence.wazuh-alerts.jsonl",
+      "line": 3,
+      "source_scope": "synthetic/spine/prelive/v1",
+      "source_record_id": "SPINE-SYNTHETIC-v1-auth-fail-2"
+    },
+    {
+      "fixture_id": "auth-success",
+      "scenario": "02_login_sequence",
+      "input_format": "wazuh",
+      "file": "fixtures/02_login_sequence.wazuh-alerts.jsonl",
+      "line": 4,
+      "source_scope": "synthetic/spine/prelive/v1",
+      "source_record_id": "SPINE-SYNTHETIC-v1-auth-success"
+    },
+    {
+      "fixture_id": "auth-other-user",
+      "scenario": "02_login_sequence",
+      "input_format": "wazuh",
+      "file": "fixtures/02_login_sequence.wazuh-alerts.jsonl",
+      "line": 5,
+      "source_scope": "synthetic/spine/prelive/v1",
+      "source_record_id": "SPINE-SYNTHETIC-v1-auth-other-user"
+    },
+    {
+      "fixture_id": "auth-other-source",
+      "scenario": "02_login_sequence",
+      "input_format": "wazuh",
+      "file": "fixtures/02_login_sequence.wazuh-alerts.jsonl",
+      "line": 6,
+      "source_scope": "synthetic/spine/prelive/v1",
+      "source_record_id": "SPINE-SYNTHETIC-v1-auth-other-source"
+    },
+    {
+      "fixture_id": "auth-other-host",
+      "scenario": "02_login_sequence",
+      "input_format": "wazuh",
+      "file": "fixtures/02_login_sequence.wazuh-alerts.jsonl",
+      "line": 7,
+      "source_scope": "synthetic/spine/prelive/v1",
+      "source_record_id": "SPINE-SYNTHETIC-v1-auth-other-host"
+    },
+    {
+      "fixture_id": "auth-missing-source",
+      "scenario": "02_login_sequence",
+      "input_format": "wazuh",
+      "file": "fixtures/02_login_sequence.wazuh-alerts.jsonl",
+      "line": 8,
+      "source_scope": "synthetic/spine/prelive/v1",
+      "source_record_id": "SPINE-SYNTHETIC-v1-auth-missing-source"
+    },
+    {
+      "fixture_id": "auth-local-control",
+      "scenario": "02_login_sequence",
+      "input_format": "wazuh",
+      "file": "fixtures/02_login_sequence.wazuh-alerts.jsonl",
+      "line": 9,
+      "source_scope": "synthetic/spine/prelive/v1",
+      "source_record_id": "SPINE-SYNTHETIC-v1-auth-local-control"
+    },
+    {
+      "fixture_id": "svc-install",
+      "scenario": "03_service",
+      "input_format": "wazuh",
+      "file": "fixtures/03_service.wazuh-alerts.jsonl",
+      "line": 1,
+      "source_scope": "synthetic/spine/prelive/v1",
+      "source_record_id": "SPINE-SYNTHETIC-v1-svc-install"
+    },
+    {
+      "fixture_id": "svc-execution",
+      "scenario": "03_service",
+      "input_format": "wazuh",
+      "file": "fixtures/03_service.wazuh-alerts.jsonl",
+      "line": 2,
+      "source_scope": "synthetic/spine/prelive/v1",
+      "source_record_id": "SPINE-SYNTHETIC-v1-svc-execution"
+    },
+    {
+      "fixture_id": "svc-legitimate-control",
+      "scenario": "03_service",
+      "input_format": "wazuh",
+      "file": "fixtures/03_service.wazuh-alerts.jsonl",
+      "line": 3,
+      "source_scope": "synthetic/spine/prelive/v1",
+      "source_record_id": "SPINE-SYNTHETIC-v1-svc-legitimate-control"
+    },
+    {
+      "fixture_id": "svc-missing-path",
+      "scenario": "03_service",
+      "input_format": "wazuh",
+      "file": "fixtures/03_service.wazuh-alerts.jsonl",
+      "line": 4,
+      "source_scope": "synthetic/spine/prelive/v1",
+      "source_record_id": "SPINE-SYNTHETIC-v1-svc-missing-path"
+    },
+    {
+      "fixture_id": "dns-marker",
+      "scenario": "04_dns",
+      "input_format": "wazuh",
+      "file": "fixtures/04_dns.wazuh-alerts.jsonl",
+      "line": 1,
+      "source_scope": "synthetic/spine/prelive/v1",
+      "source_record_id": "SPINE-SYNTHETIC-v1-dns-marker"
+    },
+    {
+      "fixture_id": "dns-burst",
+      "scenario": "04_dns",
+      "input_format": "wazuh",
+      "file": "fixtures/04_dns.wazuh-alerts.jsonl",
+      "line": 2,
+      "source_scope": "synthetic/spine/prelive/v1",
+      "source_record_id": "SPINE-SYNTHETIC-v1-dns-burst"
+    },
+    {
+      "fixture_id": "dns-next-flow",
+      "scenario": "04_dns",
+      "input_format": "wazuh",
+      "file": "fixtures/04_dns.wazuh-alerts.jsonl",
+      "line": 3,
+      "source_scope": "synthetic/spine/prelive/v1",
+      "source_record_id": "SPINE-SYNTHETIC-v1-dns-next-flow"
+    },
+    {
+      "fixture_id": "dns-other-sensor",
+      "scenario": "04_dns",
+      "input_format": "wazuh",
+      "file": "fixtures/04_dns.wazuh-alerts.jsonl",
+      "line": 4,
+      "source_scope": "synthetic/spine/prelive/v1",
+      "source_record_id": "SPINE-SYNTHETIC-v1-dns-other-sensor"
+    },
+    {
+      "fixture_id": "dns-other-client",
+      "scenario": "04_dns",
+      "input_format": "wazuh",
+      "file": "fixtures/04_dns.wazuh-alerts.jsonl",
+      "line": 5,
+      "source_scope": "synthetic/spine/prelive/v1",
+      "source_record_id": "SPINE-SYNTHETIC-v1-dns-other-client"
+    },
+    {
+      "fixture_id": "dns-request-0",
+      "scenario": "04_dns",
+      "input_format": "eve",
+      "file": "fixtures/04_dns.eve.jsonl",
+      "line": 1,
+      "source_scope": "synthetic/spine/prelive/v1/suricata",
+      "source_record_id": "synthetic-generation-1:0"
+    },
+    {
+      "fixture_id": "dns-response-0",
+      "scenario": "04_dns",
+      "input_format": "eve",
+      "file": "fixtures/04_dns.eve.jsonl",
+      "line": 2,
+      "source_scope": "synthetic/spine/prelive/v1/suricata",
+      "source_record_id": "synthetic-generation-1:1"
+    },
+    {
+      "fixture_id": "dns-request-1",
+      "scenario": "04_dns",
+      "input_format": "eve",
+      "file": "fixtures/04_dns.eve.jsonl",
+      "line": 3,
+      "source_scope": "synthetic/spine/prelive/v1/suricata",
+      "source_record_id": "synthetic-generation-1:2"
+    },
+    {
+      "fixture_id": "dns-response-1",
+      "scenario": "04_dns",
+      "input_format": "eve",
+      "file": "fixtures/04_dns.eve.jsonl",
+      "line": 4,
+      "source_scope": "synthetic/spine/prelive/v1/suricata",
+      "source_record_id": "synthetic-generation-1:3"
+    },
+    {
+      "fixture_id": "dns-request-2",
+      "scenario": "04_dns",
+      "input_format": "eve",
+      "file": "fixtures/04_dns.eve.jsonl",
+      "line": 5,
+      "source_scope": "synthetic/spine/prelive/v1/suricata",
+      "source_record_id": "synthetic-generation-1:4"
+    },
+    {
+      "fixture_id": "dns-response-2",
+      "scenario": "04_dns",
+      "input_format": "eve",
+      "file": "fixtures/04_dns.eve.jsonl",
+      "line": 6,
+      "source_scope": "synthetic/spine/prelive/v1/suricata",
+      "source_record_id": "synthetic-generation-1:5"
+    },
+    {
+      "fixture_id": "dns-request-3",
+      "scenario": "04_dns",
+      "input_format": "eve",
+      "file": "fixtures/04_dns.eve.jsonl",
+      "line": 7,
+      "source_scope": "synthetic/spine/prelive/v1/suricata",
+      "source_record_id": "synthetic-generation-1:6"
+    },
+    {
+      "fixture_id": "dns-response-3",
+      "scenario": "04_dns",
+      "input_format": "eve",
+      "file": "fixtures/04_dns.eve.jsonl",
+      "line": 8,
+      "source_scope": "synthetic/spine/prelive/v1/suricata",
+      "source_record_id": "synthetic-generation-1:7"
+    },
+    {
+      "fixture_id": "dns-request-4",
+      "scenario": "04_dns",
+      "input_format": "eve",
+      "file": "fixtures/04_dns.eve.jsonl",
+      "line": 9,
+      "source_scope": "synthetic/spine/prelive/v1/suricata",
+      "source_record_id": "synthetic-generation-1:8"
+    },
+    {
+      "fixture_id": "dns-response-4",
+      "scenario": "04_dns",
+      "input_format": "eve",
+      "file": "fixtures/04_dns.eve.jsonl",
+      "line": 10,
+      "source_scope": "synthetic/spine/prelive/v1/suricata",
+      "source_record_id": "synthetic-generation-1:9"
+    },
+    {
+      "fixture_id": "dns-request-5",
+      "scenario": "04_dns",
+      "input_format": "eve",
+      "file": "fixtures/04_dns.eve.jsonl",
+      "line": 11,
+      "source_scope": "synthetic/spine/prelive/v1/suricata",
+      "source_record_id": "synthetic-generation-1:10"
+    },
+    {
+      "fixture_id": "dns-response-5",
+      "scenario": "04_dns",
+      "input_format": "eve",
+      "file": "fixtures/04_dns.eve.jsonl",
+      "line": 12,
+      "source_scope": "synthetic/spine/prelive/v1/suricata",
+      "source_record_id": "synthetic-generation-1:11"
+    },
+    {
+      "fixture_id": "dns-request-6",
+      "scenario": "04_dns",
+      "input_format": "eve",
+      "file": "fixtures/04_dns.eve.jsonl",
+      "line": 13,
+      "source_scope": "synthetic/spine/prelive/v1/suricata",
+      "source_record_id": "synthetic-generation-1:12"
+    },
+    {
+      "fixture_id": "dns-response-6",
+      "scenario": "04_dns",
+      "input_format": "eve",
+      "file": "fixtures/04_dns.eve.jsonl",
+      "line": 14,
+      "source_scope": "synthetic/spine/prelive/v1/suricata",
+      "source_record_id": "synthetic-generation-1:13"
+    },
+    {
+      "fixture_id": "dns-request-7",
+      "scenario": "04_dns",
+      "input_format": "eve",
+      "file": "fixtures/04_dns.eve.jsonl",
+      "line": 15,
+      "source_scope": "synthetic/spine/prelive/v1/suricata",
+      "source_record_id": "synthetic-generation-1:14"
+    },
+    {
+      "fixture_id": "dns-response-7",
+      "scenario": "04_dns",
+      "input_format": "eve",
+      "file": "fixtures/04_dns.eve.jsonl",
+      "line": 16,
+      "source_scope": "synthetic/spine/prelive/v1/suricata",
+      "source_record_id": "synthetic-generation-1:15"
+    },
+    {
+      "fixture_id": "dns-baseline-control",
+      "scenario": "04_dns",
+      "input_format": "eve",
+      "file": "fixtures/04_dns.eve.jsonl",
+      "line": 17,
+      "source_scope": "synthetic/spine/prelive/v1/suricata",
+      "source_record_id": "synthetic-generation-1:16"
+    },
+    {
+      "fixture_id": "ps-source-xml",
+      "scenario": "01_powershell",
+      "input_format": "sysmon_xml",
+      "file": "fixtures/ps-source-xml.xml",
+      "line": null,
+      "source_scope": "synthetic/spine/prelive/v1/sysmon",
+      "source_record_id": "synthetic-generation-1:ps-source-xml"
+    },
+    {
+      "fixture_id": "ps-network-xml",
+      "scenario": "01_powershell",
+      "input_format": "sysmon_xml",
+      "file": "fixtures/ps-network-xml.xml",
+      "line": null,
+      "source_scope": "synthetic/spine/prelive/v1/sysmon",
+      "source_record_id": "synthetic-generation-1:ps-network-xml"
+    }
+  ],
+  "unexecuted_stages": [
+    "Native Wazuh/Suricata detection and live forwarding",
+    "Persistent database case/state/lifecycle and acquisition",
+    "Per-scenario questions, sufficiency and evidence-grounded AI",
+    "Independent analyst review, formal metrics and live scenario runs"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": "spine_synthetic_manifest/1",
+  "synthetic": true,
+  "files": {
+    "ground-truth.json": "aacdebd316766ef623c84e7191668a2e0560d5e15e1ea94660813bd8f8951df7",
+    "fixtures/01_powershell.wazuh-alerts.jsonl": "9e1fd9f9f236cc913dd892ae4f91206b79d77f24c6497c2ae43362f57fae5339",
+    "fixtures/02_login_sequence.wazuh-alerts.jsonl": "ef94696d4f2b2a8649a2bd7c01847741bdf6c99e49c141c5b915168c623d7ea0",
+    "fixtures/03_service.wazuh-alerts.jsonl": "8c93c58497c6d996dd1762ae20405eb2401f08c257bf4ff550ae409bfe14633f",
+    "fixtures/04_dns.eve.jsonl": "1594475756d737e16959478fe1763fe4107c21f0d6fbcfb009413ccb39526e68",
+    "fixtures/04_dns.wazuh-alerts.jsonl": "ba77a16dad95742b643bb3f49cb667868d906aebc39265c34602829d8d2d9504",
+    "fixtures/all-scenarios.wazuh-alerts.jsonl": "82fa0c68f23e4255079c7ee19c245656839f649043864b87fd10749081f14c91",
+    "fixtures/ps-network-xml.xml": "29e2cfcd02d150ef51014dc8a27a2e95e12bf5f9b47a52865366d3e15ad3fa49",
+    "fixtures/ps-source-xml.xml": "19c22c831844144ec2966e9c7a5a1d887028a54cbafa4025de0f3094583219a4"
+  },
+  "ground_truth_frozen_before_first_run": true
+}

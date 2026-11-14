@@ -1,0 +1,39 @@
+{
+  "synthetic_test_fixture": true,
+  "timestamp": "2026-10-01T10:23:17.979Z",
+  "rule": {
+    "level": 3,
+    "description": "SYNTHETIC ICMP parser regression",
+    "id": "86601",
+    "groups": [
+      "ids",
+      "suricata"
+    ],
+    "firedtimes": 1
+  },
+  "agent": {
+    "id": "example-agent",
+    "name": "SYNTHETIC-HOST"
+  },
+  "manager": {
+    "name": "synthetic-manager"
+  },
+  "id": "synthetic-suricata-regression-1",
+  "decoder": {
+    "name": "json"
+  },
+  "data": {
+    "timestamp": "2026-10-01T15:23:16.892404+0500",
+    "flow_id": "390628297956771.000000",
+    "event_type": "alert",
+    "src_ip": "192.168.0.76",
+    "dest_ip": "192.168.0.1",
+    "proto": "ICMP",
+    "alert": {
+      "action": "allowed",
+      "signature_id": "1000001",
+      "severity": "3",
+      "signature": "SYNTHETIC parser regression"
+    }
+  }
+}
